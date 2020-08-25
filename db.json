@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "User1",
+      "password": "Password1",
+      "contacts": [
+        { "name": "User1friend1", "email": "uf11@ml.com", "phone": "79876540011" },
+        { "name": "User1friend2", "email": "uf12@ml.com", "phone": "79876540012" },
+        { "name": "User1friend3", "email": "uf13@ml.com", "phone": "79876540013" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "User2",
+      "password": "Password2",
+      "contacts": [
+        { "name": "User2friend1", "email": "uf21@ml.com", "phone": "79876540021" },
+        { "name": "User2friend2", "email": "uf22@ml.com", "phone": "79876540022" },
+        { "name": "User2friend3", "email": "uf23@ml.com", "phone": "79876540023" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "User3",
+      "password": "Password3",
+      "contacts": [
+        { "name": "User3friend1", "email": "uf31@ml.com", "phone": "79876540031" },
+        { "name": "User3friend2", "email": "uf32@ml.com", "phone": "79876540032" },
+        { "name": "User3friend3", "email": "uf33@ml.com", "phone": "79876540033" }
+      ]
+    }
+  ],
+  "profile": {
+    "name": "alexanderkif"
+  }
+}
