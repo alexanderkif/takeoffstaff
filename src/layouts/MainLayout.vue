@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Takeoff Staff
+          Takeoff Staff{{ !!getUser ? ` - ${getUser.name}` : '' }}
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -31,7 +31,7 @@
           :key="nav.title"
           clickable v-ripple
           :to="nav.link"
-          :disable=" user || nav.link === '/login' ? false : true "
+          :disable=" getUser || nav.link === '/login' ? false : true "
           exact>
           <q-item-section avatar>
             <q-icon :name="nav.icon" />
@@ -72,12 +72,9 @@ export default {
       navs: navsData
     }
   },
-  created () {
-    // this.$root.user = { name: 'Saha' }
-  },
   computed: {
-    user () {
-      return this.$root.user
+    getUser () {
+      return this.$store.getters['user/getUser']
     }
   }
 }

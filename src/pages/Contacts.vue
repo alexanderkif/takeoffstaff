@@ -8,7 +8,12 @@
 export default {
   name: 'Contacts',
   created () {
-    if (!this.$root.user) this.$router.push('/login')
+    if (!this.getUser) this.$router.push('/login')
+  },
+  computed: {
+    getUser () {
+      return this.$store.getters['user/getUser']
+    }
   }
 }
 </script>

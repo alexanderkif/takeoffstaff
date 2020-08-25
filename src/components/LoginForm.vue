@@ -10,7 +10,7 @@
         counter
         :rules="[
             val => !!val || '* Required',
-            val => /^[а-яёa-z]*$/i.test(val) || 'Letters only',
+            val => /^[а-яёa-z0-9]*$/i.test(val) || 'Letters and numbers only',
             val => val.length >= 3 || 'Please use minimum 3 characters'
           ]"
         lazy-rules
@@ -40,15 +40,15 @@
       </q-input>
 
       <div class="text-right">
+        <q-btn v-if="getUser" label="logout" @click.stop="logout" color="primary" flat />
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn label="Submit" type="submit" color="primary" class="q-ml-sm" />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-const baseUrl = 'https://my-json-server.typicode.com/alexanderkif/takeoffstaff'
 export default {
   name: 'LoginForm',
   data () {
@@ -66,8 +66,12 @@ export default {
         this.formHasError = true
       } else {
         console.log('onSubmit', this.name, this.password)
-        this.fetchUser(this.name, this.password)
+        this.$store.dispatch('user/loginUser', { name: this.name, password: this.password })
+          .then(() => this.$router.push('/'))
       }
+    },
+    logout () {
+      this.$store.dispatch('user/exitUser')
     },
     onReset () {
       console.log('onReset')
@@ -75,32 +79,11 @@ export default {
       this.password = null
       this.$refs.name.resetValidation()
       this.$refs.password.resetValidation()
-    },
-    fetchUser (name, password) {
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, password: password })
-      }
-      console.log(`${baseUrl}/users`)
-      fetch(`${baseUrl}/users`, requestOptions)
-        .then(async response => {
-          const data = await response.json()
-          console.log('fetchUser response', response)
-
-          // check for error response
-          if (!response.ok) {
-            // get error message from body or default to response status
-            const error = (data && data.message) || response.status
-            return Promise.reject(error)
-          }
-
-          this.$root.user = data.user
-        })
-        .catch(error => {
-          this.errorMessage = error
-          console.error('There was an error!', error)
-        })
+    }
+  },
+  computed: {
+    getUser () {
+      return this.$store.getters['user/getUser']
     }
   }
 }

@@ -2,8 +2,8 @@
   <q-page class="flex flex-center">
     <div>
       <LoginForm />
-      <div class="text-caption">
-        For demo use name = User1 and password = Password1
+      <div class="text-center text-caption q-mt-lg">
+        * For demo: user1 password1
       </div>
     </div>
   </q-page>
