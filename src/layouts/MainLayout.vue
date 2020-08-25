@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Takeoff Staff{{ !!getUser ? ` - ${getUser.name}` : '' }}
+          Takeoff Staff{{ !!getUser ? ` - ${getUser.name.toUpperCase()}` : '' }}
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -25,21 +25,33 @@
       bordered
       content-class="bg-grey-1 flex items-center"
     >
-      <q-list class="full-width">
-        <q-item
-          v-for="nav in navs"
-          :key="nav.title"
-          clickable v-ripple
-          :to="nav.link"
-          :disable=" getUser || nav.link === '/login' ? false : true "
-          exact>
-          <q-item-section avatar>
-            <q-icon :name="nav.icon" />
-          </q-item-section>
+      <div class="full-width">
+        <div class="text-center">
+          <div class="bg-primary text-white text-h6 q-pa-sm">Menu</div>
+        </div>
+        <q-list class="">
+          <q-item
+            v-for="nav in navs"
+            :key="nav.title"
+            clickable v-ripple
+            :to="nav.link"
+            :disable=" getUser || nav.link === '/login' ? false : true "
+            exact
+            class="q-pa-md"
+            >
+            <q-item-section avatar>
+              <q-icon :name="nav.icon" />
+            </q-item-section>
 
-          <q-item-section class="text-h6">{{ nav.title }}</q-item-section>
-        </q-item>
-      </q-list>
+            <q-item-section class="text-h6">{{ nav.title }}</q-item-section>
+          </q-item>
+        </q-list>
+        <q-separator class="q-mb-lg" />
+        <div class="text-center">
+          <div class="bg-primary text-white text-h6 q-pa-sm">Quick Login</div>
+          <LoginForm />
+        </div>
+      </div>
     </q-drawer>
 
     <q-page-container>
@@ -63,9 +75,13 @@ const navsData = [
   }
 ]
 
+import LoginForm from '../components/LoginForm'
+
 export default {
   name: 'MainLayout',
-  components: {},
+  components: {
+    LoginForm
+  },
   data () {
     return {
       leftDrawerOpen: false,

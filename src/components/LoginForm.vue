@@ -41,8 +41,8 @@
 
       <div class="text-right">
         <q-btn v-if="getUser" label="logout" @click.stop="logout" color="primary" flat />
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-        <q-btn label="Submit" type="submit" color="primary" class="q-ml-sm" />
+        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-xs" />
+        <q-btn label="Submit" type="submit" color="primary" class="q-ml-xs" />
       </div>
     </form>
   </div>
