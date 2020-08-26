@@ -51,21 +51,19 @@ function loginUser(context, _ref) {
 
                   case 2:
                     data = _context.sent;
-                    console.log('loginUser data[0]', data[0]); // check for error response
 
                     if (response.ok) {
-                      _context.next = 7;
+                      _context.next = 6;
                       break;
                     }
 
-                    // get error message from body or default to response statusText
                     error = data && data.message || response.statusText;
                     return _context.abrupt("return", Promise.reject(error));
 
-                  case 7:
+                  case 6:
                     context.commit('setUser', data[0]);
 
-                  case 8:
+                  case 7:
                   case "end":
                     return _context.stop();
                 }

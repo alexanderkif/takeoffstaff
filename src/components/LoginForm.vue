@@ -58,6 +58,10 @@ export default {
       isPwd: true
     }
   },
+  created () {
+    this.name = (this.getUser && this.getUser.name) || ''
+    this.password = (this.getUser && this.getUser.password) || ''
+  },
   methods: {
     onSubmit () {
       this.$refs.name.validate()
@@ -65,16 +69,16 @@ export default {
       if (this.$refs.name.hasError || this.$refs.password.hasError) {
         this.formHasError = true
       } else {
-        console.log('onSubmit', this.name, this.password)
         this.$store.dispatch('user/loginUser', { name: this.name, password: this.password })
           .then(() => this.$router.push('/'))
       }
     },
     logout () {
+      this.name = ''
+      this.password = ''
       this.$store.dispatch('user/exitUser')
     },
     onReset () {
-      console.log('onReset')
       this.name = null
       this.password = null
       this.$refs.name.resetValidation()

@@ -16,9 +16,6 @@ export default {
   name: 'Login',
   components: {
     LoginForm
-  },
-  created () {
-    console.log('Login')
   }
 }
 </script>

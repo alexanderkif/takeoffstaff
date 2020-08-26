@@ -31,11 +31,8 @@ export async function loginUser (context, { name, password }) {
   await fetch(`${baseUrl}/users?name=${name}&password=${password}`)
     .then(async response => {
       const data = await response.json()
-      console.log('loginUser data[0]', data[0])
 
-      // check for error response
       if (!response.ok) {
-        // get error message from body or default to response statusText
         const error = (data && data.message) || response.statusText
         return Promise.reject(error)
       }

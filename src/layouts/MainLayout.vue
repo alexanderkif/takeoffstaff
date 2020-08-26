@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Takeoff Staff{{ !!getUser ? ` - ${getUser.name.toUpperCase()}` : '' }}
+          Takeoff Staff{{ !!getUser ? ` - Welcome, ${getUser.name.toUpperCase()}` : '' }}
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -29,28 +29,9 @@
         <div class="text-center">
           <div class="bg-primary text-white text-h6 q-pa-sm">Menu</div>
         </div>
-        <q-list class="">
-          <q-item
-            v-for="nav in navs"
-            :key="nav.title"
-            clickable v-ripple
-            :to="nav.link"
-            :disable=" getUser || nav.link === '/login' ? false : true "
-            exact
-            class="q-pa-md"
-            >
-            <q-item-section avatar>
-              <q-icon :name="nav.icon" />
-            </q-item-section>
-
-            <q-item-section class="text-h6">{{ nav.title }}</q-item-section>
-          </q-item>
-        </q-list>
+        <MainNav />
         <q-separator class="q-mb-lg" />
-        <div class="text-center">
-          <div class="bg-primary text-white text-h6 q-pa-sm">Quick Login</div>
-          <LoginForm />
-        </div>
+        <QuickLogin />
       </div>
     </q-drawer>
 
@@ -61,31 +42,18 @@
 </template>
 
 <script>
-
-const navsData = [
-  {
-    title: 'Contacts',
-    icon: 'contacts',
-    link: '/'
-  },
-  {
-    title: 'Sign in',
-    icon: 'login',
-    link: '/login'
-  }
-]
-
-import LoginForm from '../components/LoginForm'
+import MainNav from '../components/MainNav'
+import QuickLogin from '../components/QuickLogin'
 
 export default {
   name: 'MainLayout',
   components: {
-    LoginForm
+    MainNav,
+    QuickLogin
   },
   data () {
     return {
-      leftDrawerOpen: false,
-      navs: navsData
+      leftDrawerOpen: false
     }
   },
   computed: {
