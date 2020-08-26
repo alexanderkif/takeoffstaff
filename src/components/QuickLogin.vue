@@ -7,7 +7,8 @@
       <div>Quick Demo Login</div>
       <q-icon name="change_history"
       :class="`q-ml-lg quick-login-icon ${openQuickLogin?'quick-login-icon_rotate':''}`" />
-      <q-tooltip content-class="bg-purple" content-style="font-size: 1rem" :offset="[10, 10]">
+      <q-tooltip content-class="bg-purple" content-style="font-size: 1rem" :offset="[10, 10]"
+        anchor="top right" self="bottom left" transition-show="flip-right" transition-hide="flip-left">
         Too lazy to enter credentials.
       </q-tooltip>
     </div>
@@ -33,7 +34,11 @@ export default {
   methods: {
     quickLogin (name, password) {
       this.$store.dispatch('user/loginUser', { name: name, password: password })
-        .then(() => this.$router.push('/'))
+        .then(() => {
+          if (this.$route.path !== '/') {
+            this.$router.push('/')
+          }
+        })
     }
   }
 }

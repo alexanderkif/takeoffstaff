@@ -5,11 +5,11 @@
       "name": "user1",
       "password": "password1",
       "contacts": [
-        { "name": "User1friend1", "email": "uf11@ml.com", "phone": "79876540011" },
-        { "name": "User1friend2", "email": "uf12@ml.com", "phone": "79876540012" },
-        { "name": "User1friend3", "email": "uf13@ml.com", "phone": "79876540013" },
-        { "name": "User1friend4", "email": "uf14@ml.com", "phone": "79876540014" },
-        { "name": "User1friend5", "email": "uf15@ml.com", "phone": "79876540015" }
+        { "name": "User1 Friend1", "email": "uf11@ml.com", "phone": "79876540011" },
+        { "name": "User1 Friend2", "email": "uf12@ml.com", "phone": "79876540012" },
+        { "name": "User1 Friend3", "email": "uf13@ml.com", "phone": "79876540013" },
+        { "name": "User1 Friend4", "email": "uf14@ml.com", "phone": "79876540014" },
+        { "name": "User1 Friend5", "email": "uf15@ml.com", "phone": "79876540015" }
       ]
     },
     {
@@ -17,9 +17,9 @@
       "name": "user2",
       "password": "password2",
       "contacts": [
-        { "name": "User2friend1", "email": "uf21@ml.com", "phone": "79876540021" },
-        { "name": "User2friend2", "email": "uf22@ml.com", "phone": "79876540022" },
-        { "name": "User2friend3", "email": "uf23@ml.com", "phone": "79876540023" }
+        { "name": "User2 Friend1", "email": "uf21@ml.com", "phone": "79876540021" },
+        { "name": "User2 Friend2", "email": "uf22@ml.com", "phone": "79876540022" },
+        { "name": "User2 Friend3", "email": "uf23@ml.com", "phone": "79876540023" }
       ]
     },
     {
@@ -27,9 +27,9 @@
       "name": "user3",
       "password": "password3",
       "contacts": [
-        { "name": "User3friend1", "email": "uf31@ml.com", "phone": "79876540031" },
-        { "name": "User3friend2", "email": "uf32@ml.com", "phone": "79876540032" },
-        { "name": "User3friend3", "email": "uf33@ml.com", "phone": "79876540033" }
+        { "name": "User3 Friend1", "email": "uf31@ml.com", "phone": "79876540031" },
+        { "name": "User3 Friend2", "email": "uf32@ml.com", "phone": "79876540032" },
+        { "name": "User3 Friend3", "email": "uf33@ml.com", "phone": "79876540033" }
       ]
     }
   ],
