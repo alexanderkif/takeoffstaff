@@ -5,30 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.loginUser = loginUser;
 exports.exitUser = exitUser;
+exports.deleteContact = deleteContact;
 // import axios from 'axios'
 // import { Notify } from 'quasar'
-var baseUrl = 'https://my-json-server.typicode.com/alexanderkif/takeoffstaff'; // postUser (name, password) {
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({ name: name, password: password })
-//   }
-//   console.log(`${baseUrl}/users`)
-//   fetch(`${baseUrl}/users`, requestOptions)
-//     .then(async response => {
-//       const data = await response.json()
-//       // check for error response
-//       if (!response.ok) {
-//         // get error message from body or default to response status
-//         const error = (data && data.message) || response.status
-//         return Promise.reject(error)
-//       }
-//     })
-//     .catch(error => {
-//       this.errorMessage = error
-//       console.error('There was an error!', error)
-//     })
-// },
+var baseUrl = 'https://my-json-server.typicode.com/alexanderkif/takeoffstaff';
 
 function loginUser(context, _ref) {
   var _this = this;
@@ -84,4 +64,8 @@ function loginUser(context, _ref) {
 
 function exitUser(context) {
   context.commit('exitUser');
+}
+
+function deleteContact(context, contactName) {
+  context.commit('deleteContact', contactName);
 }

@@ -25,18 +25,39 @@
             <q-item-section side style="width: 3rem;">
             </q-item-section>
           </q-item>
-          <q-btn round outline color="primary" icon="delete" class="absolute-top-right q-ma-xs bg-white" />
+          <q-btn round outline color="primary" icon="delete" class="absolute-top-right q-ma-xs bg-white"
+            @click.stop="deleteContact(contact.name)" />
         </div>
       </q-list>
     </div>
+    <q-dialog v-model="openContactDeleteDialog" >
+      <ContactDeleteDialog :contactName="contactName" />
+    </q-dialog>
   </q-page>
 </template>
 
 <script>
+import ContactDeleteDialog from '../components/ContactDeleteDialog'
+
 export default {
   name: 'Contacts',
+  components: {
+    ContactDeleteDialog
+  },
+  data () {
+    return {
+      openContactDeleteDialog: false,
+      contactName: null
+    }
+  },
   created () {
     if (!this.getUser) this.$router.push('/login')
+  },
+  methods: {
+    deleteContact (contactName) {
+      this.contactName = contactName
+      this.openContactDeleteDialog = true
+    }
   },
   computed: {
     getUser () {
