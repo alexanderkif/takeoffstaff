@@ -1,12 +1,15 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center q-pa-md">
     <div class="row">
       <q-list v-if="getUser" bordered separator >
         <q-item-label header class="text-h6 bg-primary text-white">
           {{ getUser.contacts.length ? 'Contacts' : 'You have no contacts.' }}
         </q-item-label>
+        <q-item-label>
+          <q-input v-model="nameFilter" label="Search by name" class="q-mx-md" />
+        </q-item-label>
         <div
-          v-for="contact in getUser.contacts"
+          v-for="contact in getUser.contacts.filter(c => c.name.toLowerCase().includes(nameFilter.toLowerCase()))"
           :key="contact.name"
           class="relative-position"
         >
@@ -25,7 +28,7 @@
               <q-item-label>
                 {{ `+${contact.phone.slice(0,1)} ( ${contact.phone.slice(1,4)} ) - ${contact.phone.slice(4,7)} - ${contact.phone.slice(7)}` }}
               </q-item-label>
-              <q-item-label caption lines="1">{{ contact.email }}</q-item-label>
+              <q-item-label caption lines="1">{{ contact.email ? contact.email : 'No email' }}</q-item-label>
             </q-item-section>
 
             <q-item-section side style="width: 3rem;">
@@ -64,7 +67,8 @@ export default {
       openContactDeleteDialog: false,
       contactName: null,
       contactEmail: null,
-      contactPhone: null
+      contactPhone: null,
+      nameFilter: ''
     }
   },
   created () {
