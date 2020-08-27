@@ -28,3 +28,7 @@ export function exitUser (context) {
 export function deleteContact (context, contactName) {
   context.commit('deleteContact', contactName)
 }
+
+export function updateContact (context, contact) {
+  context.commit('updateContact', contact)
+}

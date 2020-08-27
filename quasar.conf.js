@@ -76,6 +76,7 @@ module.exports = function (/* ctx */) {
     devServer: {
       https: false,
       port: 8080,
+      // vueDevtools: true,
       open: true // opens browser window automatically
     },
 

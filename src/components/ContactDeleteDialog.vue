@@ -1,5 +1,5 @@
 <template>
-  <q-card class="background-panel">
+  <q-card>
     <q-card-section class="row bg-primary text-white items-center">
       <span class="text-h6">Delete contact {{contactName}}?</span>
     </q-card-section>
@@ -13,7 +13,7 @@
 <script>
 
 export default {
-  name: 'ItemDeleteDialog',
+  name: 'ContactDeleteDialog',
   props: {
     contactName: String
   },

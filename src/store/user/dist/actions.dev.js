@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.loginUser = loginUser;
 exports.exitUser = exitUser;
 exports.deleteContact = deleteContact;
+exports.updateContact = updateContact;
 // import axios from 'axios'
 // import { Notify } from 'quasar'
 var baseUrl = 'https://my-json-server.typicode.com/alexanderkif/takeoffstaff';
@@ -68,4 +69,8 @@ function exitUser(context) {
 
 function deleteContact(context, contactName) {
   context.commit('deleteContact', contactName);
+}
+
+function updateContact(context, contact) {
+  context.commit('updateContact', contact);
 }
