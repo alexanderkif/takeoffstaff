@@ -46,13 +46,12 @@
     <q-card-actions align="right">
       <q-btn flat rounded label="Cancel" color="primary" v-close-popup />
       <q-btn rounded :color="contactName ? 'warning' : 'positive'" text-color="white"
-      :label="contactName ? 'Edit' : 'Add'" @click="updateContact" v-close-popup="isValid" />
+      :label="contactName ? 'Update' : 'Create'" @click="updateContact" v-close-popup="isValid" />
     </q-card-actions>
   </q-card>
 </template>
 
 <script>
-
 export default {
   name: 'ContactDialog',
   props: {
@@ -72,29 +71,32 @@ export default {
     updateContact () {
       const contact = {}
       if (this.contactName) {
+        this.$refs.phone.validate()
+        this.$refs.email.validate()
+        if (this.$refs.phone.hasError || this.$refs.email.hasError) return false
         contact.name = this.contactName
       } else {
         this.$refs.name.validate()
-        if (this.$refs.name.hasError) return false
-        else contact.name = this.name
+        this.$refs.phone.validate()
+        this.$refs.email.validate()
+        if (this.$refs.name.hasError || this.$refs.phone.hasError || this.$refs.email.hasError) return false
+        if (this.getUser.contacts.filter(c => c.name === this.name).length) {
+          this.$q.notify({ message: `User ${this.name} already exists`, color: 'negative' })
+          return false
+        }
+        contact.name = this.name
       }
-      this.$refs.phone.validate()
-      this.$refs.email.validate()
 
-      if (this.$refs.phone.hasError || this.$refs.email.hasError) {
-        return false
-      } else {
-        contact.phone = this.phone.split('').filter(d => d.match(/[\d]/)).join('')
-        contact.email = this.email
-        this.$store.dispatch('user/updateContact', contact)
-        this.isValid = true
-      }
+      contact.phone = this.phone.split('').filter(d => d.match(/[\d]/)).join('')
+      contact.email = this.email
+      this.$store.dispatch('user/updateContact', contact)
+      this.isValid = true
     }
-    // reset () {
-    //   if (!this.contactName) this.$refs.name.resetValidation()
-    //   this.$refs.name.resetValidation()
-    //   this.$refs.name.resetValidation()
-    // }
+  },
+  computed: {
+    getUser () {
+      return this.$store.getters['user/getUser']
+    }
   }
 }
 </script>
