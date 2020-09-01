@@ -38,6 +38,15 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <div v-show="waiting" class="fullscreen flex flex-center bg-white" style="opacity: 0.5;">
+      <q-spinner-hourglass
+        v-show="waiting"
+        color="purple"
+        size="3rem"
+        style="opacity: 1;"
+      />
+    </div>
   </q-layout>
 </template>
 
@@ -53,8 +62,17 @@ export default {
   },
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      waiting: false
     }
+  },
+  created () {
+    this.$root.$on('startAsync', () => { this.waiting = true })
+    this.$root.$on('stopAsync', () => { this.waiting = false })
+  },
+  beforeDestroy () {
+    this.$root.$off('startAsync', () => { this.waiting = true })
+    this.$root.$off('stopAsync', () => { this.waiting = false })
   },
   computed: {
     getUser () {

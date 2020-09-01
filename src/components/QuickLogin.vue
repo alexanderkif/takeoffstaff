@@ -33,11 +33,13 @@ export default {
   },
   methods: {
     quickLogin (name, password) {
+      this.$root.$emit('startAsync')
       this.$store.dispatch('user/loginUser', { name: name, password: password })
         .then(() => {
           if (this.$route.path !== '/') {
             this.$router.push('/')
           }
+          this.$root.$emit('stopAsync')
         })
     }
   }

@@ -8,35 +8,37 @@
         <q-item-label>
           <q-input v-model="nameFilter" label="Search by name" class="q-mx-md" />
         </q-item-label>
-        <div
-          v-for="contact in getUser.contacts.filter(c => c.name.toLowerCase().includes(nameFilter.toLowerCase()))"
-          :key="contact.name"
-          class="relative-position"
-        >
-          <q-item active active-class="text-primary" clickable v-ripple
-            @click.stop="editContact(contact)" >
-            <q-item-section avatar>
-              <q-avatar size="3rem" color="primary" text-color="white" class="text-uppercase">
-                {{ contact.name.slice(0,1) }}{{ contact.name.slice(-1) }}
-              </q-avatar>
-            </q-item-section>
+        <transition-group name="list" >
+          <div
+            v-for="contact in getUser.contacts.filter(c => c.name.toLowerCase().includes(nameFilter.toLowerCase()))"
+            :key="contact.name"
+            class="relative-position list-item"
+          >
+            <q-item active active-class="text-primary" clickable v-ripple
+              @click.stop="editContact(contact)" >
+              <q-item-section avatar>
+                <q-avatar size="3rem" color="primary" text-color="white" class="text-uppercase">
+                  {{ contact.name.split(' ').map(el => el.slice(0,1)).join('') }}
+                </q-avatar>
+              </q-item-section>
 
-            <q-item-section>
-              <q-item-label class="text-h6">
-                {{ contact.name }}
-              </q-item-label>
-              <q-item-label>
-                {{ `+${contact.phone.slice(0,1)} ( ${contact.phone.slice(1,4)} ) - ${contact.phone.slice(4,7)} - ${contact.phone.slice(7)}` }}
-              </q-item-label>
-              <q-item-label caption lines="1">{{ contact.email ? contact.email : 'No email' }}</q-item-label>
-            </q-item-section>
+              <q-item-section>
+                <q-item-label class="text-h6">
+                  {{ contact.name }}
+                </q-item-label>
+                <q-item-label>
+                  {{ `+${contact.phone.slice(0,1)} ( ${contact.phone.slice(1,4)} ) - ${contact.phone.slice(4,7)} - ${contact.phone.slice(7)}` }}
+                </q-item-label>
+                <q-item-label caption lines="1">{{ contact.email ? contact.email : 'No email' }}</q-item-label>
+              </q-item-section>
 
-            <q-item-section side style="width: 3rem;">
-            </q-item-section>
-          </q-item>
-          <q-btn round outline color="primary" icon="delete" class="absolute-right bg-white delete-item-btn"
-            @click.stop="deleteContact(contact.name)" />
-        </div>
+              <q-item-section side style="width: 3rem;">
+              </q-item-section>
+            </q-item>
+            <q-btn round outline color="primary" icon="delete" class="absolute-right bg-white delete-item-btn"
+              @click.stop="deleteContact(contact.name)" />
+          </div>
+        </transition-group>
       </q-list>
     </div>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
@@ -105,5 +107,19 @@ export default {
   margin: auto 0;
   height: fit-content;
   right: 0.5rem;
+}
+.list-item {
+  transition: all 0.7s ease-out;
+}
+.list-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.list-leave-active {
+  position: absolute;
+  opacity: 0;
+  right: 2rem;
+  bottom: 2rem;
+  transform: scale(0.1) rotate(-180deg);
 }
 </style>
