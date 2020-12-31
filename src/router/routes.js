@@ -5,6 +5,8 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Contacts.vue') },
+      { path: 'vue-babylonjs', component: () => import('pages/Babylon2.vue') },
+      { path: 'babylon-js', component: () => import('pages/Babylon3.vue') },
       { path: 'login', component: () => import('pages/Login.vue') }
     ]
   },

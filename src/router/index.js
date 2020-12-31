@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import vb from 'vue-babylonjs'
+
+// Vue.use(vb)
 
 import routes from './routes'
 
